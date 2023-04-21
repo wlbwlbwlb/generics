@@ -39,9 +39,28 @@ func main() {
 	fmt.Println(In(4, []int{1, 2, 3}))
 	fmt.Println(In("c", []string{"a", "b", "c"}))
 	fmt.Println(In("d", []string{"a", "b", "c"}))
+
+	fmt.Println(InV2(3, []int{1, 2, 3}))
+	fmt.Println(InV2(4, []int{1, 2, 3}))
+	fmt.Println(InV2("c", []string{"a", "b", "c"}))
+	fmt.Println(InV2("d", []string{"a", "b", "c"}))
 }
 
 func In[T comparable](elem T, arr []T) bool {
+	for _, v := range arr {
+		if v == elem {
+			return true
+		}
+	}
+	return false
+}
+
+// Constraint customized type constraints
+type Constraint interface {
+	int | string
+}
+
+func InV2[T Constraint](elem T, arr []T) bool {
 	for _, v := range arr {
 		if v == elem {
 			return true
